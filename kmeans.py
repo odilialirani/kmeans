@@ -8,7 +8,7 @@ HW 4
 Prof. Dan Goldwasser
 '''
 
-import sys, csv, random
+import sys, csv, random, math
 import numpy as np
 
 # Need to store latitude, longitude, revCount, checkins to calc centroid
@@ -55,7 +55,23 @@ else:
 			index = random.randint(0, len(data)-1)
 			centroids.append(data[index])
 		
-		
+		while (True):
+			# TODO: Change the while loop condition
+			for i in range(len(data)):
+				# Reassign points to the closest , use Euclidean mean
+				nearest = sys.float_info.max
+				for j in centroids:
+					# Calculate the distance
+					s = 0;
+
+					for w in range(4) :
+						s = s + math.pow((float(j[w]) - float((data[i])[w])), 2)
+					dist = math.sqrt(s)
+					print dist
+				break
+			break
+
+
 
 
 
