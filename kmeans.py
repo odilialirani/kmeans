@@ -60,14 +60,19 @@ else:
 			for i in range(len(data)):
 				# Reassign points to the closest , use Euclidean mean
 				nearest = sys.float_info.max
-				for j in centroids:
+				indexNearest = 0
+				for j in range(int(k)):
 					# Calculate the distance
-					s = 0;
-
+					s = 0
 					for w in range(4) :
-						s = s + math.pow((float(j[w]) - float((data[i])[w])), 2)
+						s = s + math.pow((float(centroids[j][w]) - float((data[i])[w])), 2)
 					dist = math.sqrt(s)
+					if (nearest > dist):
+						nearest = dist
+						indexNearest = j 
 					print dist
+				print nearest
+				print indexNearest
 				break
 			break
 
