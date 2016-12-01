@@ -23,9 +23,23 @@ else:
 	k = arguments[2]
 	counter = 0
 	data = []
+	o = 0
+	skip = True;
 	with open(dataFile, 'rU') as file:
 		reader = csv.reader(file, dialect=csv.excel_tab)
 		for line in reader:
+			'''if (skip):
+				skip = False
+				continue
+			counter += 1
+			print line[0]
+			for a in line[0].split(',') :
+				data.append(a)
+			# make sure to do this twice
+			if (counter == 2) :
+				counter = 0
+				print data[7], ',', data[8], ',', data[10], ',', data[11]
+				data = []'''
 			if (counter == 0):
 				counter += 1
 				continue
@@ -35,12 +49,11 @@ else:
 			if (counter > 1):
 				counter = 1
 				# DO SOMETHING HERE
-				
+				print data[7], ',', data[8], ',', data[10], ',', data[11]
+				data[:] = []
+				continue
 			counter += 1
-		print data[7]
-		print data[8]
-		print data[10]
-		print data[11]
+		
 	'''with open(dataFile, 'rb') as file:
 		r = csv.reader(open(self.file, 'rU'), dialect=csv.excel_tab)
 		for row in r:
