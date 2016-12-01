@@ -27,7 +27,7 @@ else:
 	centroids = []
 	# create the clusters
 	clusters = [ [] for h in range(int(k))]
-	
+
 	print clusters
 	with open(dataFile, 'rU') as file:
 		reader = csv.reader(file, dialect=csv.excel_tab)
@@ -78,8 +78,10 @@ else:
 				print indexNearest
 				# Now that we have the nearest centroid to the data,
 				# put the point into the appropritate cluster
+				clusters[indexNearest].append(data[i])
 				break
 			break
+		print clusters[0]
 
 
 
