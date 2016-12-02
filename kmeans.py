@@ -53,13 +53,15 @@ else:
 			#print tabRow[3], ',', tabRow[4], ',', tabRow[6], ',', tabRow[7]
 			data.append([tabRow[3], tabRow[4], tabRow[6], tabRow[7]])
 			tabRow[:] = []
-		# Select k random points
+
+		# Select k random points (initial centroids)
 		for i in range(int(k)):
 			index = random.randint(0, len(data)-1)
 			centroids.append(data[index])
 		
 		while (True):
 			# TODO: Change the while loop condition
+			
 			for i in range(len(data)):
 				# Reassign points to the closest , use Euclidean mean
 				nearest = sys.float_info.max
@@ -73,15 +75,39 @@ else:
 					if (nearest > dist):
 						nearest = dist
 						indexNearest = j 
-					print dist
-				print nearest
-				print indexNearest
+					#iprint dist
+				#print nearest
+				#print indexNearest
 				# Now that we have the nearest centroid to the data,
 				# put the point into the appropritate cluster
 				clusters[indexNearest].append(data[i])
-				break
+			
+			# Finished initilalizing the data
+			# Relocate the centroids
+			# go through each cluster, find the new centroid
+			# centroid = (mean of lat, long, revCount, checkins)
+			for i in range(int(k)) :
+				sumLat = 0
+				sumLong = 0
+				sumRev = 0
+				sumCheck = 0
+				for j in range(len(clusters[i])) :
+					# find the mean for each. this will be the new centroid for ith cluster
+					sumLat += float(clusters[i][j][0])
+					sumLong += float(clusters[i][j][1])
+					sumRev += float(clusters[i][j][2])
+					sumCheck += float(clusters[i][j][3])
+				'''print sumLat
+				print sumLong
+				print sumRev
+				print sumCheck'''
+				meanLat = sumLat / len(clusters[i])
+				meanLong = sumLong / len(clusters[i])
+				meanRev = sumRev / len(clusters[i])
+				meanCheck = sumCheck / len(clusters[i])
+				print meanLat, ', ', meanLong, ', ',meanRev, ', ', meanCheck
 			break
-		print clusters[0]
+		#print clusters[0]
 
 
 
